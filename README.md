@@ -71,7 +71,7 @@ saveamberparm MOL final_distamycinB.prmtop final_distamycinB.rst7/
 quit/
 
 
-LIGAND-DNA COMPLEX PREP
+LIGAND-DNA COMPLEX PREP 1:1
 
 source leaprc.DNA.bsc1/
 source leaprc. gaff2/
@@ -89,6 +89,26 @@ saveamberparm DMY final_dna_distamycin.prmtop final_dna_distamycin.rst7/
 quit/
 
 
+LIGAND-DNA COMPLEX PREP 2:1/
+source leaprc.DNA.bsc1/
+source leaprc.gaff2/
+source leaprc.water.spce/
+loadoff distamycin_A_H.off/
+loadamberprep distamycin_A_H.prepi/
+loadamberparams distamycin_A_H.frcmod/
+loadoff distamycin_B_H.off/
+loadamberprep distamycin_B_H.prepi/
+loadamberparams distamycin_B_H.frcmod/
+DMY = loadpdb double_bound_final.pdb/
+addions DMY Na+ 0/
+solvateoct DMY SPCBOX 12.0/
+check DMY/
+savepdb DMY final_double_bound.pdb/
+saveamberparm DMY final_double_bound.prmtop final_double_bound.inpcrd/
+saveamberparm DMY final_double_bound.prmtop final_double_bound.rst7/
+quit/
+
+
 DNA ONLY PREP
 
 source leaprc.DNA.bsc1/
@@ -103,7 +123,7 @@ check mol /
 quit/
 
 
-Once you have created these files (your system), you may proceed with the “New biological molecule (DNA/INC) protocol:
+Once you have created these files (your system), you may proceed with the “New biological molecule (DNA/INC) protocol":
 
 1.	Initial minimization: Let solvent relax around restrained solute
 -	1000 steps (500 steepest descents/500 conjugate gradient)
@@ -112,12 +132,12 @@ Once you have created these files (your system), you may proceed with the “New
 -	2500 steps (1000 steepest descents/1500 conjugate gradient)
 3.	Defrost (md1): Begin constant volume to warm to proper temperature with restrained solute
 -	100ps NPT 
--	Langevin temperature control 0  300K
+-	Langevin temperature control 0 -> 300K
 -	25 kcal/mol-Å2 restraints (solute)
 4.	Equilibration (md2): Switch to constant pressure to get proper density while gradually releasing restraints on solute (5-stage release with strong restraints for first 40ps while density is changing most rapidly)250ps NPT
 -	Langevin temperature control 300K
 -	“Weak-coupling” pressure control 1.0bar (~1atm)
--	25  5kcal/mol-Å2 restraints(solute)
+-	25 -> 5kcal/mol-Å2 restraints(solute)
 o	md2a 25kcal 50ps
 o	md2b 20kcal 50ps
 o	md2c 15kcal 50ps
