@@ -1,0 +1,8 @@
+### To analyze Total Energy, Kinetic Energy, Potential Energy, Temperature, Pressure, Volume, and Density ###
+### To analyze Average Energy, Kinetic Energy, Potential Energy, Temperature, Pressure, Volume, and Density ###
+
+mkdir analysis
+
+cd analysis
+
+process_mdout.perl ../md1.out ../md2a.out ../md2b.out ../md2c.out ../md2d.out ### whatever output files you want to analyze ###
