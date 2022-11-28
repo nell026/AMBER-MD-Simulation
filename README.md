@@ -1,6 +1,6 @@
 # AMBER-MD-Simulation
 
-Setting up a DNA-Ligand System for AMBER/WESTPA Simulations
+Setting up a DNA-Ligand System for AMBER Simulations
 **parameters subject to change based on system studied**
 
 AMBER
