@@ -1,0 +1,12 @@
+parm final_double_bound.prmtop 
+trajin double_bound_combined_traj.nc 
+autoimage :1-18
+distance :2@/P :13@/P out distance_A  
+distance :3@/P :12@/P out distance_A 
+distance :4@/P :11@/P out distance_A 
+distance :5@/P :10@/P out distance_A 
+distance :16@/P :5@/P out distance_B 
+distance :15@/P :6@/P out distance_B 
+distance :14@/P :7@/P out distance_B  
+distance :13@/P :8@/P out distance_B 
+run
