@@ -1,0 +1,6 @@
+parm final_double_bound.prmtop 
+trajin double_bound_combined_traj.nc 
+reference min2.pdb parm final_double_bound.prmtop [ref]
+autoimage :1-18
+rmsd :1-18&!@H= ref [ref] :1-18&!@H= out rmsd_double_bound.dat
+run
