@@ -49,12 +49,11 @@ saveoff MOL file.lib/
 saveamberparm MOL file.prmtop file.rst7/
 quit/
 
-
 Once completed with the antechamber protocol, the following are the next steps:
 
 ###To create your system###
 
-LIGAND ONLY PREP
+LIGAND ONLY PREP/
 
 source leaprc.gaff2/
 source leaprc.water.spce/
@@ -71,7 +70,7 @@ saveamberparm MOL final_distamycinB.prmtop final_distamycinB.rst7/
 quit/
 
 
-LIGAND-DNA COMPLEX PREP 1:1
+LIGAND-DNA COMPLEX PREP 1:1/
 
 source leaprc.DNA.bsc1/
 source leaprc. gaff2/
@@ -90,6 +89,7 @@ quit/
 
 
 LIGAND-DNA COMPLEX PREP 2:1/
+
 source leaprc.DNA.bsc1/
 source leaprc.gaff2/
 source leaprc.water.spce/
@@ -109,7 +109,7 @@ saveamberparm DMY final_double_bound.prmtop final_double_bound.rst7/
 quit/
 
 
-DNA ONLY PREP
+DNA ONLY PREP/
 
 source leaprc.DNA.bsc1/
 source leaprc.water.spce/
@@ -158,9 +158,10 @@ o	md2e 5kcal 50ps
 
 
 
-Files for Protocol
+Input Files for Protocol
 
 Min1.in /
+
 minimization for water and counterions/
  &cntrl/
   irest=0,/
@@ -179,6 +180,7 @@ minimization for water and counterions/
 
 
 Min2.in /
+
 Solute minimization run/
 &cntrl/
   imin=1,/
@@ -193,6 +195,7 @@ Solute minimization run/
 
 
 Md1.in/
+
 Defrost NVT 0 to 300 K with res on DNA/
  &cntrl/
   imin=0,/
@@ -212,6 +215,7 @@ Defrost NVT 0 to 300 K with res on DNA/
 
 
 Md2a.in/
+
 Minimization Restraint 25kcal 50ps/
  &cntrl/
   imin=0,/
@@ -233,6 +237,7 @@ Minimization Restraint 25kcal 50ps/
 
 
 Md2b.in/
+
 Minimization Restraint 20kcal 50ps/
  &cntrl/
   imin=0,/
@@ -254,6 +259,7 @@ Minimization Restraint 20kcal 50ps/
 
 
 Md2c.in/
+
 Minimization Restraint 15kcal 50ps/
  &cntrl/
   imin=0,/
@@ -275,6 +281,7 @@ Minimization Restraint 15kcal 50ps/
 
 
 Md2d.in/
+
 Minimization Restraint 10kcal 50ps/
  &cntrl/
   imin=0,/
@@ -296,6 +303,7 @@ Minimization Restraint 10kcal 50ps/
 
 
 Md2e.in/
+
 Minimization Restraint 5kcal 50ps/
  &cntrl/
   imin=0,/
@@ -317,6 +325,7 @@ Minimization Restraint 5kcal 50ps/
 
 
 Md3.in/
+
 Equilibrization md3/
  &cntrl/
   imin=0,/
@@ -338,6 +347,7 @@ Equilibrization md3/
 
 
 Md4.in/
+
 Equilibrate md4 for 1 ns in NVT/
  &cntrl/
   imin=0,/
@@ -353,6 +363,7 @@ Equilibrate md4 for 1 ns in NVT/
 
 
 Production.in/
+
 Production run NVT/
  &cntrl/
   imin=0,/
