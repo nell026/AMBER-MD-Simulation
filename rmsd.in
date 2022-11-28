@@ -1,0 +1,7 @@
+#rmsd
+
+parm 3beq.prmtop
+trajin 3beq_NVT.mdcrd 
+rmsd first :1-770@C,CA,N out 3beq_NVT_rmsd.dat
+run
+writedata 3beq_NVT_rmsd.dat 3beq_NVT_rmsd
