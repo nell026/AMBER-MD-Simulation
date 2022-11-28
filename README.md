@@ -39,69 +39,71 @@ parmchk2 -i file.mol2 -f mol2 -o file.frcmod
 
 Creating off (.lib) files
 
-module load amber
-tleap
-source leaprc.gaff2
-MOL=loadmol2 file.mol2
-check MOL
-loadamberparams file.frcmod
-saveoff MOL file.lib
-saveamberparm MOL file.prmtop file.rst7
-quit
+module load amber/
+tleap/
+source leaprc.gaff2/
+MOL=loadmol2 file.mol2/
+check MOL/
+loadamberparams file.frcmod/
+saveoff MOL file.lib/
+saveamberparm MOL file.prmtop file.rst7/
+quit/
 
 
 Once completed with the antechamber protocol, the following are the next steps:
 
+###To create your system###
+
 LIGAND ONLY PREP
 
-source leaprc.gaff2
-source leaprc.water.spce
-loadoff distamycin_B_H.off
-loadamberprep distamycin_B_H.prepi
-loadamberparams distamycin_B_H.frcmod
-MOL = loadpdb distamycin_B_H.pdb
-addions MOL Cl- 0
-solvateoct MOL SPCBOX 12.0
-check MOL
-savepdb MOL final_distamycinB.pdb
-saveamberparm MOL final_distamycinB.prmtop final_distamycinB.inpcrd
-saveamberparm MOL final_distamycinB.prmtop final_distamycinB.rst7
-quit
+source leaprc.gaff2/
+source leaprc.water.spce/
+loadoff distamycin_B_H.off/
+loadamberprep distamycin_B_H.prepi/
+loadamberparams distamycin_B_H.frcmod/
+MOL = loadpdb distamycin_B_H.pdb/
+addions MOL Cl- 0/
+solvateoct MOL SPCBOX 12.0/
+check MOL/
+savepdb MOL final_distamycinB.pdb/
+saveamberparm MOL final_distamycinB.prmtop final_distamycinB.inpcrd/
+saveamberparm MOL final_distamycinB.prmtop final_distamycinB.rst7/
+quit/
 
 
 LIGAND-DNA COMPLEX PREP
 
-source leaprc.DNA.bsc1
-source leaprc. gaff2
-source leaprc. water.spce
-loadoff distamycin_B_H.off
-loadamberprep distamycin_B_H.prepi
-loadamberparams distamycin_B_H.frcmod
-DMY = loadpdb dna_distamycin.pdb
-addions DMY Na+ 0
-solvateoct DMY SPCBOX 12.0
-check DMY
-savepdb DMY final_dna_distamycin.pdb
-saveamberparm DMY final_dna_distamycin.prmtop final_dna_distamycin.inpcrd
-saveamberparm DMY final_dna_distamycin.prmtop final_dna_distamycin.rst7
-qui
+source leaprc.DNA.bsc1/
+source leaprc. gaff2/
+source leaprc. water.spce/
+loadoff distamycin_B_H.off/
+loadamberprep distamycin_B_H.prepi/
+loadamberparams distamycin_B_H.frcmod/
+DMY = loadpdb dna_distamycin.pdb/
+addions DMY Na+ 0/
+solvateoct DMY SPCBOX 12.0/
+check DMY/
+savepdb DMY final_dna_distamycin.pdb/
+saveamberparm DMY final_dna_distamycin.prmtop final_dna_distamycin.inpcrd/
+saveamberparm DMY final_dna_distamycin.prmtop final_dna_distamycin.rst7/
+quit/
 
 
 DNA ONLY PREP
 
-source leaprc.DNA.bsc1
-source leaprc.water.spce
-mol = loadpdb dna_only.pdb
-addions mol Na+ 0
-solvateoct mol SPCBOX 12.0
-savepdb mol dna_only_solv.pdb
-saveamberparm mol dna_only.prmtop dna_only.inpcrd
-saveamberparm mol dna_only.prmtop dna_only.rst7
-check mol 
-quit
+source leaprc.DNA.bsc1/
+source leaprc.water.spce/
+mol = loadpdb dna_only.pdb/
+addions mol Na+ 0/
+solvateoct mol SPCBOX 12.0/
+savepdb mol dna_only_solv.pdb/
+saveamberparm mol dna_only.prmtop dna_only.inpcrd/
+saveamberparm mol dna_only.prmtop dna_only.rst7/
+check mol /
+quit/
 
 
-Once you have created these files, you may proceed with the “New biological molecule (DNA/INC) protocol:
+Once you have created these files (your system), you may proceed with the “New biological molecule (DNA/INC) protocol:
 
 1.	Initial minimization: Let solvent relax around restrained solute
 -	1000 steps (500 steepest descents/500 conjugate gradient)
@@ -138,221 +140,210 @@ o	md2e 5kcal 50ps
 
 Files for Protocol
 
-Min1.in 
-
-minimization for water and counterions
- &cntrl
-  irest=0,
-  ntx=1,
-  imin=1,
-  ntr=1,
-  ncyc=500,
-  maxcyc=1000,
-  ntr=1,
-  restraint_wt=500.0,
-  restraintmask=':1',
-  ntpr=100,
-  ntwx=0,
-  cut=10.0,
+Min1.in /
+minimization for water and counterions/
+ &cntrl/
+  irest=0,/
+  ntx=1,/
+  imin=1,/
+  ntr=1,/
+  ncyc=500,/
+  maxcyc=1000,/
+  ntr=1,/
+  restraint_wt=500.0,/
+  restraintmask=':1',/ ##based on what you want to restrain###
+  ntpr=100,/
+  ntwx=0,/
+  cut=10.0,/
  /
 
 
-Min2.in 
-
-Solute minimization run
-&cntrl
-  imin=1,
-  ntx=1,
-  irest=0,
-  ncyc=1000,
-  maxcyc=2500,
-  ntpr=100,
-  ntwx=0,
-  cut=10.0,
+Min2.in /
+Solute minimization run/
+&cntrl/
+  imin=1,/
+  ntx=1,/
+  irest=0,/
+  ncyc=1000,/
+  maxcyc=2500,/
+  ntpr=100,/
+  ntwx=0,/
+  cut=10.0,/
  /
 
 
-Md1.in
-
-Defrost NVT 0 to 300 K with res on DNA
- &cntrl
-  imin=0,
-  irest=0,
-  ntx=1,
-  ntb=1,
-  cut=10.0,
-  ntr=1,
-  restraint_wt=25.0, restraintmask=':1',
-  ntc=2,
-  ntf=2,
-  tempi=0, temp0=300,
-  ntt=3, gamma_ln=1.0,
-  nstlim=50000, dt=0.002,
-  ntpr=100, ntwx=100, ntwr=1000
+Md1.in/
+Defrost NVT 0 to 300 K with res on DNA/
+ &cntrl/
+  imin=0,/
+  irest=0,/
+  ntx=1,/
+  ntb=1,/
+  cut=10.0,/
+  ntr=1,/
+  restraint_wt=25.0, restraintmask=':1',/
+  ntc=2,/
+  ntf=2,/
+  tempi=0, temp0=300,/
+  ntt=3, gamma_ln=1.0,/
+  nstlim=50000, dt=0.002,/
+  ntpr=100, ntwx=100, ntwr=1000/
  /
 
 
-Md2a.in
-
-Minimization Restraint 25kcal 50ps
- &cntrl
-  imin=0,
-  irest=1,
-  ntx=5,
-  ntb=2,
-  pres0=1.0,
-  ntp=1,
-  taup=1.0,
-  cut=10.0,
-  ntr=1, restraint_wt=25.0, restraintmask=':1',
-  ntc=2, ntf=2,
-  tempi=300.0, temp0=300.0,
-  ntt=3,
-  gamma_ln=1.0,
-  nstlim=25000, dt=0.002,
-  ntpr=100, ntwx=1000, ntwr=1000
+Md2a.in/
+Minimization Restraint 25kcal 50ps/
+ &cntrl/
+  imin=0,/
+  irest=1,/
+  ntx=5,/
+  ntb=2,/
+  pres0=1.0,/
+  ntp=1,/
+  taup=1.0,/
+  cut=10.0,/
+  ntr=1, restraint_wt=25.0, restraintmask=':1',/
+  ntc=2, ntf=2,/
+  tempi=300.0, temp0=300.0,/
+  ntt=3,/
+  gamma_ln=1.0,/
+  nstlim=25000, dt=0.002,/
+  ntpr=100, ntwx=1000, ntwr=1000/
  /
 
 
-Md2b.in
-
-Minimization Restraint 20kcal 50ps
- &cntrl
-  imin=0,
-  irest=1,
-  ntx=5,
-  ntb=2,
-  pres0=1.0,
-  ntp=1,
-  taup=1.0,
-  cut=10.0,
-  ntr=1, restraint_wt=20.0, restraintmask=':1',
-  ntc=2, ntf=2,
-  tempi=300.0, temp0=300.0,
-  ntt=3,
-  gamma_ln=1.0,
-  nstlim=25000, dt=0.002,
-  ntpr=100, ntwx=1000, ntwr=1000
+Md2b.in/
+Minimization Restraint 20kcal 50ps/
+ &cntrl/
+  imin=0,/
+  irest=1,/
+  ntx=5,/
+  ntb=2,/
+  pres0=1.0,/
+  ntp=1,/
+  taup=1.0,/
+  cut=10.0,/
+  ntr=1, restraint_wt=20.0, restraintmask=':1',/
+  ntc=2, ntf=2,/
+  tempi=300.0, temp0=300.0,/
+  ntt=3,/
+  gamma_ln=1.0,/
+  nstlim=25000, dt=0.002,/
+  ntpr=100, ntwx=1000, ntwr=1000/
  /
 
 
-Md2c.in
-
-Minimization Restraint 15kcal 50ps
- &cntrl
-  imin=0,
-  irest=1,
-  ntx=5,
-  ntb=2,
-  pres0=1.0,
-  ntp=1,
-  taup=1.0,
-  cut=10.0,
-  ntr=1, restraint_wt=15.0, restraintmask=':1',
-  ntc=2, ntf=2,
-  tempi=300.0, temp0=300.0,
-  ntt=3,
-  gamma_ln=1.0,
-  nstlim=25000, dt=0.002,
-  ntpr=100, ntwx=1000, ntwr=1000
+Md2c.in/
+Minimization Restraint 15kcal 50ps/
+ &cntrl/
+  imin=0,/
+  irest=1,/
+  ntx=5,/
+  ntb=2,/
+  pres0=1.0,/
+  ntp=1,/
+  taup=1.0,/
+  cut=10.0,/
+  ntr=1, restraint_wt=15.0, restraintmask=':1',/
+  ntc=2, ntf=2,/
+  tempi=300.0, temp0=300.0,/
+  ntt=3,/
+  gamma_ln=1.0,/
+  nstlim=25000, dt=0.002,/
+  ntpr=100, ntwx=1000, ntwr=1000/
  /
 
 
-Md2d.in
-
-Minimization Restraint 10kcal 50ps
- &cntrl
-  imin=0,
-  irest=1,
-  ntx=5,
-  ntb=2,
-  pres0=1.0,
-  ntp=1,
-  taup=1.0,
-  cut=10.0,
-  ntr=1, restraint_wt=10.0, restraintmask=':1',
-  ntc=2, ntf=2,
-  tempi=300.0, temp0=300.0,
-  ntt=3,
-  gamma_ln=1.0,
-  nstlim=25000, dt=0.002,
-  ntpr=100, ntwx=1000, ntwr=1000
+Md2d.in/
+Minimization Restraint 10kcal 50ps/
+ &cntrl/
+  imin=0,/
+  irest=1,/
+  ntx=5,/
+  ntb=2,/
+  pres0=1.0,/
+  ntp=1,/
+  taup=1.0,/
+  cut=10.0,/
+  ntr=1, restraint_wt=10.0, restraintmask=':1',/
+  ntc=2, ntf=2,/
+  tempi=300.0, temp0=300.0,/
+  ntt=3,/
+  gamma_ln=1.0,/
+  nstlim=25000, dt=0.002,/
+  ntpr=100, ntwx=1000, ntwr=1000/
  /
 
 
-Md2e.in
-
-Minimization Restraint 5kcal 50ps
- &cntrl
-  imin=0,
-  irest=1,
-  ntx=5,
-  ntb=2,
-  pres0=1.0,
-  ntp=1,
-  taup=1.0,
-  cut=10.0,
-  ntr=1, restraint_wt=5.0, restraintmask=':1',
-  ntc=2, ntf=2,
-  tempi=300.0, temp0=300.0,
-  ntt=3,
-  gamma_ln=1.0,
-  nstlim=25000, dt=0.002,
-  ntpr=100, ntwx=1000, ntwr=1000
+Md2e.in/
+Minimization Restraint 5kcal 50ps/
+ &cntrl/
+  imin=0,/
+  irest=1,/
+  ntx=5,/
+  ntb=2,/
+  pres0=1.0,/
+  ntp=1,/
+  taup=1.0,/
+  cut=10.0,/
+  ntr=1, restraint_wt=5.0, restraintmask=':1',/
+  ntc=2, ntf=2,/
+  tempi=300.0, temp0=300.0,/
+  ntt=3,/
+  gamma_ln=1.0,/
+  nstlim=25000, dt=0.002,/
+  ntpr=100, ntwx=1000, ntwr=1000/
  /
 
 
-Md3.in
-
-Equilibrization md3
- &cntrl
-  imin=0,
-  irest=1,
-  ntx=5,
-  ntb=2,
-  pres0=1.0,
-  ntp=1,
-  taup=1.0,
-  cut=10.0,
-  ntc=2, ntf=2,
-  tempi=300.0, temp0=300.0,
-  ntt=3,
-  gamma_ln=1.0,
-  ntxo=1,
-  nstlim=100000, dt=0.002,
-  ntpr=100, ntwx=1000, ntwr=1000,
+Md3.in/
+Equilibrization md3/
+ &cntrl/
+  imin=0,/
+  irest=1,/
+  ntx=5,/
+  ntb=2,/
+  pres0=1.0,/
+  ntp=1,/
+  taup=1.0,/
+  cut=10.0,/
+  ntc=2, ntf=2,/
+  tempi=300.0, temp0=300.0,/
+  ntt=3,/
+  gamma_ln=1.0,/
+  ntxo=1,/
+  nstlim=100000, dt=0.002,/
+  ntpr=100, ntwx=1000, ntwr=1000,/
  /
 
 
-Md4.in
-
-Equilibrate md4 for 1 ns in NVT
- &cntrl
-  imin=0,
-  irest=1, ntx=5,
-  ntb=1,
-  cut=10.0,
-  ntc=2, ntf=2,
-  tempi=300.0, temp0=300.0,
-  ntt=3, gamma_ln=1.0,
-  nstlim=500000, dt=0.002,
-  ntpr=500, ntwx=1000, ntwr=100000,
+Md4.in/
+Equilibrate md4 for 1 ns in NVT/
+ &cntrl/
+  imin=0,/
+  irest=1, ntx=5,/
+  ntb=1,/
+  cut=10.0,/
+  ntc=2, ntf=2,/
+  tempi=300.0, temp0=300.0,/
+  ntt=3, gamma_ln=1.0,/
+  nstlim=500000, dt=0.002,/
+  ntpr=500, ntwx=1000, ntwr=100000,/
  /
 
 
-Production.in
-
-Production run NVT
- &cntrl
-  imin=0,
-  irest=1, ntx=5,
-  ntb=1,
-  ig=-1,
-  cut=10.0,
-  ntc=2, ntf=2,
-  tempi=300.0, temp0=300.0,
-  ntt=3, gamma_ln=1.0,
-  nstlim=50000000, dt=0.002,
-  ntpr=1000, ntwx=500, ntwr=10000,
+Production.in/
+Production run NVT/
+ &cntrl/
+  imin=0,/
+  irest=1, ntx=5,/
+  ntb=1,/
+  ig=-1,/
+  cut=10.0,/
+  ntc=2, ntf=2,/
+  tempi=300.0, temp0=300.0,/
+  ntt=3, gamma_ln=1.0,/
+  nstlim=50000000, dt=0.002,/
+  ntpr=1000, ntwx=500, ntwr=10000,/
  /
 
