@@ -1,0 +1,4 @@
+parm final_distamycinB.prmtop
+trajin prod.nc
+diffusion :DMY out DMY.agr DMY diffout DMY.dat 
+run
