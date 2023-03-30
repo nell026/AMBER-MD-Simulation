@@ -23,7 +23,7 @@ Antechamber Procedure for Ligand
 4.	mol2/prepi -> frcmod file
 
 
-pdb4amber -i orig.pdb -o new.pdb –reduce –dry
+pdb4amber -i orig.pdb -o new.pdb –-reduce –-dry
 
 antechamber -i file.pdb -fi pdb -o file.com -fo gcrt -gv 1 -ge file.gesp -nc 1 (for net charge=1)
 
