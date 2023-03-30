@@ -11,8 +11,6 @@ Download the PDB of the DNA-Ligand into your directory.
 
 Clean up the PDB.
 
-Make a directory for your DNA, DNA-Ligand complex, and just the ligand. 
-
 Ligand needs to go through antechamber 
 
 Antechamber Procedure for Ligand 
