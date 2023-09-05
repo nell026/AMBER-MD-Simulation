@@ -11,11 +11,7 @@ Download the PDB of the DNA-Ligand into your directory.
 
 Clean up the PDB.
 
-Ligand needs to go through antechamber 
-
-Antechamber Procedure for Ligand 
-
-1.	Ligand PDB -> GCRT (gaussian input)
+1.	Ligand PDB -> GCRT 
 2.	GCRT -> GESP
 3.	GESP -> mol2/prepi file
 4.	mol2/prepi -> frcmod file
